@@ -22,14 +22,14 @@ export const MODALIDADES = ["campo", "futsal"] as const;
 export type Modalidade = (typeof MODALIDADES)[number];
 
 export const CATEGORIAS = [
-  { slug: "sub-12", nome: "Sub-12", modalidades: ["campo", "futsal"] },
-  { slug: "sub-15", nome: "Sub-15", modalidades: ["campo", "futsal"] },
-  { slug: "sub-18", nome: "Sub-18", modalidades: ["campo", "futsal"] },
-  { slug: "master-35", nome: "Master 35", modalidades: ["campo"] },
-  { slug: "principal", nome: "Principal", modalidades: ["campo"] },
-  { slug: "aspirantes", nome: "Aspirantes", modalidades: ["campo"] },
-  { slug: "escolinha", nome: "Escolinha", modalidades: ["campo"] },
-  { slug: "futsal-adulto", nome: "Futsal Adulto", modalidades: ["futsal"] },
+  { slug: "sub-12", nome: "Sub-12", modalidades: ["campo", "futsal"], faixa_etaria: "Até 12 anos" },
+  { slug: "sub-15", nome: "Sub-15", modalidades: ["campo", "futsal"], faixa_etaria: "13–15 anos" },
+  { slug: "sub-18", nome: "Sub-18", modalidades: ["campo", "futsal"], faixa_etaria: "16–18 anos" },
+  { slug: "master-35", nome: "Master 35", modalidades: ["campo"], faixa_etaria: "35+ anos" },
+  { slug: "principal", nome: "Principal", modalidades: ["campo"], faixa_etaria: "Adulto" },
+  { slug: "aspirantes", nome: "Aspirantes", modalidades: ["campo"], faixa_etaria: "Adulto" },
+  { slug: "escolinha", nome: "Escolinha", modalidades: ["campo"], faixa_etaria: "Iniciação" },
+  { slug: "futsal-adulto", nome: "Futsal Adulto", modalidades: ["futsal"], faixa_etaria: "Adulto" },
 ] as const;
 
 export type CategoriaSlug = (typeof CATEGORIAS)[number]["slug"];
