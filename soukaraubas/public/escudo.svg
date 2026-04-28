@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Karaúbas Futebol Clube">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#2A66D1"/>
+      <stop offset="100%" stop-color="#102C68"/>
+    </radialGradient>
+  </defs>
+  <!-- Background placeholder até o escudo oficial PNG/SVG ser fornecido -->
+  <circle cx="100" cy="100" r="96" fill="url(#bg)" stroke="#FFC72C" stroke-width="6"/>
+  <circle cx="100" cy="100" r="78" fill="#1E4FB5" stroke="#FFC72C" stroke-width="3"/>
+  <text x="100" y="92" text-anchor="middle"
+        font-family="Impact, 'Bebas Neue', Arial Black, sans-serif"
+        font-size="48" font-weight="900" fill="#FFC72C" letter-spacing="2">
+    KFC
+  </text>
+  <text x="100" y="120" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#FFC72C" letter-spacing="1">
+    KARAÚBAS FUTEBOL CLUBE
+  </text>
+  <text x="100" y="140" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#FFC72C" letter-spacing="1">
+    FUNDADO EM 29/08/2009
+  </text>
+  <!-- Estrelinhas -->
+  <g fill="#FFC72C">
+    <circle cx="40" cy="100" r="2.5"/>
+    <circle cx="160" cy="100" r="2.5"/>
+    <circle cx="100" cy="40" r="2.5"/>
+    <circle cx="100" cy="160" r="2.5"/>
+  </g>
+</svg>

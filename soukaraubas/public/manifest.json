@@ -1,0 +1,13 @@
+{
+  "name": "SouKaraubas — Karaúbas FC",
+  "short_name": "SouKaraubas",
+  "description": "App oficial do Karaúbas Futebol Clube",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#102C68",
+  "theme_color": "#1E4FB5",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/escudo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

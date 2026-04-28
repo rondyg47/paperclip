@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --kfc-blue: #1e4fb5;
+  --kfc-blue-dark: #102c68;
+  --kfc-yellow: #ffc72c;
+  --kfc-orange: #e8651f;
+}
+
+html,
+body {
+  background-color: #f6f7fb;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold
+           transition-colors disabled:opacity-50 disabled:pointer-events-none
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kfc-yellow focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-kfc-blue text-white hover:bg-kfc-blue-700 active:bg-kfc-blue-800;
+  }
+  .btn-secondary {
+    @apply btn bg-kfc-yellow text-kfc-blue-900 hover:bg-kfc-yellow-600;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-kfc-blue-700 hover:bg-kfc-blue-50;
+  }
+  .card {
+    @apply rounded-xl bg-white shadow-card;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+}
+
+/* Scrollbar discreto pra desktop */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(30, 79, 181, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(30, 79, 181, 0.45);
+  }
+}
