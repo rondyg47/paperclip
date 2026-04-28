@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { Bell, Search } from "lucide-react";
 import { Escudo } from "@/components/ui/Escudo";
+import { getSessionUser } from "@/lib/auth/session";
+import { UserMenu } from "@/components/layout/UserMenu";
 
-export function Header() {
+export async function Header() {
+  const user = await getSessionUser();
+
   return (
     <header className="sticky top-0 z-30 border-b border-kfc-blue-100 bg-kfc-gradient text-white">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4">
@@ -19,6 +23,7 @@ export function Header() {
           <NavItem href="/elenco" label="Elenco" />
           <NavItem href="/jogos" label="Jogos" />
           <NavItem href="/feed" label="Feed" />
+          {user && <NavItem href="/convocacao" label="Convocação" />}
         </nav>
 
         <div className="flex items-center gap-1">
@@ -28,18 +33,24 @@ export function Header() {
           >
             <Search size={18} />
           </button>
-          <button
-            className="rounded-full p-2 hover:bg-white/10"
-            aria-label="Notificações"
-          >
-            <Bell size={18} />
-          </button>
-          <Link
-            href="/login"
-            className="ml-1 rounded-lg bg-kfc-yellow px-3 py-1.5 text-xs font-bold text-kfc-blue-900 hover:bg-kfc-yellow-600"
-          >
-            Entrar
-          </Link>
+          {user && (
+            <button
+              className="rounded-full p-2 hover:bg-white/10"
+              aria-label="Notificações"
+            >
+              <Bell size={18} />
+            </button>
+          )}
+          {user ? (
+            <UserMenu user={user} />
+          ) : (
+            <Link
+              href="/login"
+              className="ml-1 rounded-lg bg-kfc-yellow px-3 py-1.5 text-xs font-bold text-kfc-blue-900 hover:bg-kfc-yellow-600"
+            >
+              Entrar
+            </Link>
+          )}
         </div>
       </div>
     </header>

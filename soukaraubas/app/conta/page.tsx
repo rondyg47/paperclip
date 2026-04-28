@@ -1,29 +1,32 @@
 import Link from "next/link";
+import { Settings, Calendar, Heart, LogIn, ChevronRight, Shield } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Card } from "@/components/ui/Card";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
-import {
-  Settings,
-  Calendar,
-  Heart,
-  LogIn,
-  ChevronRight,
-} from "lucide-react";
+import { getSessionUser } from "@/lib/auth/session";
+import { logout } from "@/app/auth/actions";
 
 export const metadata = { title: "Conta" };
 
-export default function ContaPage() {
-  // Auth real entra aqui com createClient() do Supabase
-  const logado = false;
+const roleLabels = {
+  admin: { label: "Admin", tone: "orange" as const },
+  comissao: { label: "Comissão", tone: "yellow" as const },
+  atleta: { label: "Atleta", tone: "blue" as const },
+  torcedor: { label: "Torcedor", tone: "slate" as const },
+};
 
-  if (!logado) {
+export default async function ContaPage() {
+  const user = await getSessionUser();
+
+  if (!user) {
     return (
       <div className="mx-auto max-w-md px-4">
         <PageHeader title="Conta" />
         <Card className="p-6 text-center">
           <p className="text-sm text-slate-600">
-            Entre na sua conta pra ver convocações, suas estatísticas e o feed interno.
+            Entre na sua conta pra ver convocações, suas estatísticas e o feed
+            interno.
           </p>
           <Link
             href="/login"
@@ -36,24 +39,42 @@ export default function ContaPage() {
     );
   }
 
+  const role = roleLabels[user.role];
+  const isStaff = user.role === "admin" || user.role === "comissao";
+
   return (
     <div className="mx-auto max-w-2xl px-4 md:px-0">
       <PageHeader title="Conta" />
 
       <Card className="flex items-center gap-4 p-4">
-        <Avatar alt="Usuário KFC" size={56} />
+        <Avatar src={user.avatar_url} alt={user.nome} size={56} />
         <div className="flex-1">
-          <p className="font-semibold text-kfc-blue-900">Nome do Usuário</p>
-          <p className="text-xs text-slate-500">email@exemplo.com</p>
-          <Badge tone="blue" className="mt-1">Torcedor</Badge>
+          <p className="font-semibold text-kfc-blue-900">{user.apelido ?? user.nome}</p>
+          <p className="text-xs text-slate-500">{user.email}</p>
+          <Badge tone={role.tone} className="mt-1 gap-1">
+            {user.role === "admin" && <Shield size={10} />}
+            {role.label}
+          </Badge>
         </div>
       </Card>
 
       <div className="mt-4 grid gap-2">
         <MenuItem href="/convocacao" icon={<Calendar size={18} />} label="Minhas convocações" />
         <MenuItem href="/curtidos" icon={<Heart size={18} />} label="Posts curtidos" />
+        {isStaff && (
+          <MenuItem href="/admin" icon={<Shield size={18} />} label="Painel admin" />
+        )}
         <MenuItem href="/configuracoes" icon={<Settings size={18} />} label="Configurações" />
       </div>
+
+      <form action={logout} className="mt-6">
+        <button
+          type="submit"
+          className="w-full rounded-lg border border-red-200 bg-white py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50"
+        >
+          Sair da conta
+        </button>
+      </form>
     </div>
   );
 }
